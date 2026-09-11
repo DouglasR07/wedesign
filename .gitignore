@@ -1,0 +1,19 @@
+# dependências
+node_modules/
+
+# ambiente — NUNCA comitar: as variáveis vivem no painel da Vercel
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel/
+
+# ferramentas locais
+.claude/
+__pycache__/
+*.pyc
+
+# sistema
+.DS_Store
+Thumbs.db
