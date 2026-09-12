@@ -575,9 +575,19 @@ footer .fl{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-tran
           + '<p class="sent-p">We\u2019ll put together a preview of your site and get back to you within one business day.</p>'
           + '</div>';
       } catch (err) {
-        if (btn){ btn.disabled = false; btn.innerHTML = label; }
-        var w = f.querySelector(".fine");
-        if (w) w.innerHTML = 'Something went wrong \u2014 email us at <a href="mailto:contato.drsolucoesdigitais@gmail.com" style="color:var(--oxide-lit)">contato.drsolucoesdigitais@gmail.com</a>';
+        // Sem banco configurado: nao perde o lead, manda por e-mail.
+        var body = "Business name: " + g("company")
+          + "\nTown: " + g("town")
+          + "\nBest number: " + g("phone")
+          + "\nWhat they do: " + g("trade")
+          + "\n\nSent from " + location.host + location.pathname;
+        window.location.href = "mailto:contato.drsolucoesdigitais@gmail.com"
+          + "?subject=" + encodeURIComponent("[LEAD] " + g("company") + " - " + g("town"))
+          + "&body=" + encodeURIComponent(body);
+        f.innerHTML = '<div class="sent">'
+          + '<p class="sent-h">Almost there.</p>'
+          + '<p class="sent-p">Your email app should be opening with the details filled in \u2014 just hit send and we\u2019ll get back to you within one business day.</p>'
+          + '</div>';
       }
     });
   });
